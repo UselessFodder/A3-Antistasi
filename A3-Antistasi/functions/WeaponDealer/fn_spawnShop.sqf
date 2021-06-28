@@ -376,6 +376,13 @@ if(!(_garage getVariable ["storeEventHandlerDone", false])) then
             server setVariable [format ["%1_storeCooldown", _marker], time + 1800];
             server setVariable [format ["%1_storeSlotSave", _marker], []];
             server setVariable [format ["%1_storeSlotTime", _marker], 0];
+            deleteMarker format ["%1_storeMarker", _marker];
+
+            if(format ["%1_SHOP", _marker] call BIS_fnc_taskExists) then
+            {
+                [format ["%1_SHOP", _marker], "FAILED", true] call BIS_fnc_taskSetState;
+            };
+
             Info_1("Store in %1 destroyed, setting 30 minutes countdown", _marker);
         }
     ];
@@ -383,7 +390,12 @@ if(!(_garage getVariable ["storeEventHandlerDone", false])) then
     Info_1("EventHandler for store in %1 set", _marker);
 };
 
-
+Info_1("Checking for detection mission for shop in %1", _marker);
+private _isDetected = server getVariable [format ["%1_isDetected", _marker], false];
+if(!_isDetected) then
+{
+    [_garage, _marker] spawn A3A_fnc_SHOP_Detection;
+};
 
 [_allObjects, _marker] spawn
 {
