@@ -137,20 +137,6 @@ class Params
         texts[] = {"Default (5km)","4 Kmts","5 Kmts","6 Kmts","7 Kmts","8 Kmts","Unlimited"};
         default = 9999;
     };
-    class allowMembersFactionGarageAccess
-    {
-        title = "Allow members to access the faction garage";
-        values[] = {9999,1,0};
-        texts[] = {"Default (Yes)","Yes","No"};
-        default = 9999;
-    };
-    class personalGarageMax
-    {
-        title = "Max personal garage slots";
-        values[] = {9999,0,2,5,10};
-        texts[] = {"Default (2)","Unlimited","2","5","10"};
-        default = 9999;
-    };
     class allowFT
     {
         title = "Fast Travel Targets Allowed";
@@ -303,6 +289,13 @@ class Params
         title = "Allow Art of War DLC?";
         values[] = {9999,1,0};
         texts[] =  {"Default (No)","Yes","No"};
+        default = 9999;
+    };
+        class VN
+    {
+        title = "Allow VN DLC (S.O.G. PRAIRIE FIRE)?";
+        values[] = {9999,1,0};
+        texts[] =  {"Default (Yes)","Yes","No"};
         default = 9999;
     };
     class Spacer0
