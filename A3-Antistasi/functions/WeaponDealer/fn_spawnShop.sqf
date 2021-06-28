@@ -49,7 +49,7 @@ params
 ];
 
 Info_1("Spawning store in %1 now", _marker);
-private _storeSize = (floor (_citySupportRatio / 0.34) + 1) min 3;
+private _storeSize = (floor (_citySupportRatio / 0.22) + 1) min 3;
 Info_1("Selected store size is %1", _storeSize);
 private _assets = [];
 
@@ -308,31 +308,53 @@ private _slots = [];
             _this enableSimulationGlobal true;
         };
         [_asset, ["Sell content of box", {[_this select 0] call A3A_fnc_sellBoxContent;}]] remoteExec ["addAction", [civilian, teamplayer], true];
+
+        //TODO block ACE from carrying the box
     };
 } forEach _assets;
 
 Info_1("Assets spawned in for store in %1", _marker);
-
-private _chooseArray = [3, 8, 1, 3, 6, 6, 5, 7, 1, 6, 4, 3];
-private _alreadySelected = [];
-private _selectedItems = [];
+Info_1("Checking for saved slots in %1", _marker);
+private _savedArray = server getVariable [format ["%1_storeSlotSave", _marker], []];
+if(server getVariable [format ["%1_storeSlotTime", _marker], -1] < time) then
 {
-    private _itemData = [_chooseArray, _x#3, _citySupportRatio, _alreadySelected] call _fnc_chooseSpawnItem;
-    private _itemType = _itemData#0;
-    private _item = _itemData#1;
-    if(_item == "") then
+    _savedArray = [];
+};
+
+if(count _savedArray == count _slots) then
+{
     {
-        Info_1("No selection done on slot %1, staying empty", _x);
-    }
-    else
+        private _savedSlot = _x;
+        private _slot = _slots#_forEachIndex;
+        _allObjects pushBack ([_savedSlot#0, _savedSlot#1, _slot#1, _slot#2, _slot#0] call _fnc_spawnItem);
+    } forEach _savedArray;
+}
+else
+{
+    private _chooseArray = [3, 8, 1, 3, 6, 6, 5, 7, 1, 6, 4, 3];
+    private _alreadySelected = [];
     {
-        _alreadySelected pushBack _item;
-        _chooseArray = _itemData#2;
-        Info_3("Selected %1 of type %2 for slot %3", _item, _itemType, _x);
-        _allObjects pushBack ([_itemType, _item, _x#1, _x#2, _x#0] call _fnc_spawnItem);
-    };
-    _selectedItems pushBack [_itemType, _item];
-} forEach _slots;
+        private _itemData = [_chooseArray, _x#3, _citySupportRatio, _alreadySelected] call _fnc_chooseSpawnItem;
+        private _itemType = _itemData#0;
+        private _item = _itemData#1;
+        if(_item == "") then
+        {
+            Info_1("No selection done on slot %1, staying empty", _x);
+        }
+        else
+        {
+            _alreadySelected pushBack _item;
+            _chooseArray = _itemData#2;
+            Info_3("Selected %1 of type %2 for slot %3", _item, _itemType, _x);
+            _allObjects pushBack ([_itemType, _item, _x#1, _x#2, _x#0] call _fnc_spawnItem);
+        };
+        _savedArray pushBack [_itemType, _item];
+    } forEach _slots;
+
+    server setVariable [format ["%1_storeSlotSave", _marker], _savedArray];
+    server setVariable [format ["%1_storeSlotTime", _marker], time + 1800];
+};
+
 server setVariable [format ["%1_storeObjects", _marker], _allObjects];
 
 if(!(_garage getVariable ["storeEventHandlerDone", false])) then
@@ -352,6 +374,8 @@ if(!(_garage getVariable ["storeEventHandlerDone", false])) then
             _garage setVariable ["storeEventHandlerDone", nil];
             //Activates a cooldown of 30 minutes
             server setVariable [format ["%1_storeCooldown", _marker], time + 1800];
+            server setVariable [format ["%1_storeSlotSave", _marker], []];
+            server setVariable [format ["%1_storeSlotTime", _marker], 0];
             Info_1("Store in %1 destroyed, setting 30 minutes countdown", _marker);
         }
     ];
