@@ -106,7 +106,7 @@ _allAttachments sort true;
 private _newOrder = [];
 {
     _newOrder pushBack (_x select 1);
-    missionNamespace setVariable [format ["%1_data", _x select 1], [_x select 0, 5, 0, 0]];
+    missionNamespace setVariable [format ["%1_data", _x select 1], [_x select 0, 5, 0, 0, 0]];
 } forEach _allAttachments;
 
 Debug_1("%1", _newOrder apply {getText (configFile >> "CfgWeapons" >> _x >> "displayName")});

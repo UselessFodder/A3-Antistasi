@@ -376,6 +376,7 @@ if(!(_garage getVariable ["storeEventHandlerDone", false])) then
             server setVariable [format ["%1_storeCooldown", _marker], time + 1800];
             server setVariable [format ["%1_storeSlotSave", _marker], []];
             server setVariable [format ["%1_storeSlotTime", _marker], 0];
+            server setVariable [format ["%1_isDetected", _marker], false];
             deleteMarker format ["%1_storeMarker", _marker];
 
             if(format ["%1_SHOP", _marker] call BIS_fnc_taskExists) then

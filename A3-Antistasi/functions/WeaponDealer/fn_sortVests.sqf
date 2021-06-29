@@ -44,7 +44,7 @@ private _list = [];
     _score = _score / 3;
 
     //Debug_2("Vest %1 end score is %2", _x, _score);
-    missionNamespace setVariable [format ["%1_data", _x], [_score, 6, 0, 0]];
+    missionNamespace setVariable [format ["%1_data", _x], [_score, 6, 0, 0, 0]];
     _list pushBack [_score, _x];
 } forEach (allCivilianVests + allArmoredVests);
 

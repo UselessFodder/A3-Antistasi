@@ -71,9 +71,9 @@ switch (_class) do
 //Maybe get the score of the item in too
 private _itemValue = (missionNamespace getVariable [format ["%1_data", _item], [1]]) select 0;
 
-private _basePrice = round (10 * _priceModifier * _itemValue) * 5;
-private _supplyPrice = round (_basePrice * exp (7/20)) * 10; //Replace 7 by the amount of already done purchases
+private _basePrice = ceil (5 * _priceModifier * _itemValue) * 5;
+private _supplyPrice = round (_basePrice * exp (0/20)) * 5; //Replace 7 by the amount of already done purchases
 
 [_object, [format ["Buy %1 for %2", _displayName, _basePrice], {([_this select 0] + (_this select 3)) call A3A_fnc_singleBuyAction;}, [_item, _class, _displayName, _basePrice]]] remoteExec ["addAction", [civilian, teamplayer], true];
-//_object addAction [format ["Buy %1 supply for %2", _displayName, _supplyPrice], {hint "Weapon bought!";}];
+[_object, [format ["Buy %1 supply for %2", _displayName, _supplyPrice], {hint "Weapon bought!";}]] remoteExec ["addAction", [civilian, teamPlayer], true];
 //_object addAction [format ["Steal %1", _displayName], {hint "Weapon bought!";}];

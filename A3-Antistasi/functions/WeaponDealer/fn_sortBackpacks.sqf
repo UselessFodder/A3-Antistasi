@@ -36,7 +36,7 @@ private _list = [];
     _score = _score / 2;
 
     //Debug_2("Backpack %1 end score is %2", _x, _score);
-    missionNamespace setVariable [format ["%1_data", _x], [_score, 7, 0, 0]];
+    missionNamespace setVariable [format ["%1_data", _x], [_score, 7, 0, 0, 0]];
     _list pushBack [_score, _x];
 } forEach allBackpacksEmpty;
 

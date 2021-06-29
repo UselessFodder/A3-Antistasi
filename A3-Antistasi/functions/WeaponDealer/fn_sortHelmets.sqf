@@ -32,7 +32,7 @@ private _list = [];
     private _score = (_mass / 20) + (_armor / 4);
     _score = _score / 2;
 
-    missionNamespace setVariable [format ["%1_data", _x], [_score, 11, 0, 0]];
+    missionNamespace setVariable [format ["%1_data", _x], [_score, 11, 0, 0, 0]];
     _list pushBack [_score, _x];
 } forEach lootHelmet;
 

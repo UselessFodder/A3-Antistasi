@@ -86,7 +86,7 @@ private _list = [];
 _list sort true;
 allAmmunitionShop = [];
 {
-    missionNamespace setVariable [format ["%1_data", (_x select 1)], [(_x select 0), 4, 0, 0]];
+    missionNamespace setVariable [format ["%1_data", (_x select 1)], [(_x select 0), 4, 0, 0, 0]];
     allAmmunitionShop pushBack (_x select 1);
 } forEach _list;
 

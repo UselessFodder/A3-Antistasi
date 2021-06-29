@@ -198,7 +198,7 @@ _weaponsScore sort true;
 private _sortedArray = [];
 {
     _sortedArray pushBack (_x select 1);
-    missionNamespace setVariable [format ["%1_data", _x select 1], [_x select 0, _weaponIndex, 0, 0]];
+    missionNamespace setVariable [format ["%1_data", _x select 1], [_x select 0, _weaponIndex, 0, 0, 0]];
 } forEach _weaponsScore;
 
 Info_2("Sorted %1 weapons of type %2", count _weaponsScore, _weaponsType);

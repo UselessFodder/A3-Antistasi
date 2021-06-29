@@ -38,7 +38,7 @@ private _list = [];
     private _score = (_hit / 1000) + (_range / 5) + ((40 - _mass) max 0)/20;
     _score = _score / 3;
 
-    missionNamespace setVariable [format ["%1_data", _x], [_score, 3, 0, 0]];
+    missionNamespace setVariable [format ["%1_data", _x], [_score, 3, 0, 0, 0]];
     _list pushBack [_score, _x];
 } forEach lootExplosive;
 
