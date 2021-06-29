@@ -163,7 +163,7 @@ _itemCounts =+ _availableItems;
 		_item = _x select 0;
 		_amount = (_x select 1);
 		if (_amount != -1 && !_isMember) then {
-			if !(_isMagArray) then { _amount = _amount - minWeaps }
+			if !(_isMagArray) then { _amount = _amount - 25 }
 			else {
 				// Magazines are counted in bullets
 				_ammoCount = getNumber (configfile >> "CfgMagazines" >> _item >> "count");
@@ -197,7 +197,7 @@ _assignedItems = ((_inventory select 9) + [_inventory select 3] + [_inventory se
 		if!(_radioName isEqualTo "")then{
 			_item =_radioName;
 		};
-		
+
 		_isBino = _item call _isItemBino;
 
 		call {
@@ -340,9 +340,9 @@ private _addContainerFuncs = [
 			IDC_RSCDISPLAYARSENAL_TAB_VEST,
 			IDC_RSCDISPLAYARSENAL_TAB_BACKPACK
 		] select _foreachindex;
-		
+
 		_addContainerFunc = (_addContainerFuncs select _foreachindex);
-		
+
 		call {
 			if ([_itemCounts select _index, _item] call jn_fnc_arsenal_itemCount == -1) exitWith {
 				[_item] call _addContainerFunc;
@@ -506,7 +506,3 @@ if!(_reportTotal isEqualTo "")then{
 	]
 ]
 */
-
-
-
-

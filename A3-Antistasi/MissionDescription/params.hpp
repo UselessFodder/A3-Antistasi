@@ -102,13 +102,6 @@ class Params
         texts[] = {"Default (Normal)","Easy","Normal","Hard"};
         default = 9999;
     };
-    class unlockItem
-    {
-        title = "Number of the same item required to unlock";
-        values[] = {9999,15,25,40,1e6};
-        texts[] = {"Default (25)","15","25","40","1 000 000"};
-        default = 9999;
-    };
     class memberOnlyMagLimit
     {
         title = "Number of magazines needed for guests to be able to use them";

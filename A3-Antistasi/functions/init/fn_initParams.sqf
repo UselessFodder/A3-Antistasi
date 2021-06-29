@@ -58,7 +58,6 @@ A3A_paramTable = [
 
     ["startWithLongRangeRadio", "startWithLongRangeRadio", [], true],
     ["helmetLossChance", "helmetLossChance", [], 33],
-    ["minWeaps", "unlockItem", [], 25],
     ["memberOnlyMagLimit", "memberOnlyMagLimit", [], 40],				// dead param
     ["unlockedUnlimitedAmmo", "unlockedUnlimitedAmmo", [], 0],			// these three are not bool for some reason
     ["allowUnlockedExplosives", "allowUnlockedExplosives", [], 0],
@@ -124,8 +123,6 @@ if (loadLastSave) then
         private _difficultyX = ["difficultyX"] call A3A_fnc_returnSavedStat;
         if (!isMultiplayer && !(isNil "_difficultyX")) then {
             skillMult = _difficultyX;
-            if (skillMult == 1) then {minWeaps = 15};
-            if (skillMult == 3) then {minWeaps = 40};
         };
 
         // Load the other legacy saved params

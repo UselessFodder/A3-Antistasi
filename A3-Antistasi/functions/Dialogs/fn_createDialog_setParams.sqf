@@ -18,7 +18,6 @@ if (!isNil "loadLastSave" && {!loadLastSave}) then {
 
 	// Set default SP params before initParams runs, where different from MP
 	if (isNil "skillMult") then {skillMult = 2};
-	minWeaps = [15,15,25,40] select skillMult;
 	membershipEnabled = false;
 	tkPunish = false;
 
