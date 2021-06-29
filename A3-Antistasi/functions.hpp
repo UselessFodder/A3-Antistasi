@@ -114,6 +114,7 @@ class A3A
         class startTestingTimer {};
         class statistics {};
         class stripGearFromLoadout {};
+        class supplyManage {};
         class teleportVehicleToBase {};
         class timingCA {};
         class translateVariable {};

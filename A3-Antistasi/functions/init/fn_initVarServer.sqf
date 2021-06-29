@@ -147,6 +147,8 @@ testingTimerIsActive = false;
 
 A3A_tasksData = [];
 
+allSupplies = [];
+
 ///////////////////////////////////////////
 //     INITIALISING ITEM CATEGORIES     ///
 ///////////////////////////////////////////

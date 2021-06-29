@@ -111,11 +111,10 @@ while {true} do
 	publicVariable "bombRuns";
 
 	private _textX = format ["<t size='0.6' color='#C1C0BB'>Taxes Income.<br/> <t size='0.5' color='#C1C0BB'><br/>Manpower: +%1<br/>Money: +%2 €", _hrAdd, _resAdd];
-	private _textArsenal = [] call A3A_fnc_arsenalManage;
-	if (_textArsenal != "") then {_textX = format ["%1<br/>Arsenal Updated<br/><br/>%2", _textX, _textArsenal]};
-	[petros, "taxRep", _textX] remoteExec ["A3A_fnc_commsMP", [teamPlayer, civilian]];
+    [petros, "taxRep", _textX] remoteExec ["A3A_fnc_commsMP", [teamPlayer, civilian]];
 
-
+    [] call A3A_fnc_supplyManage;
+	[] call A3A_fnc_arsenalManage;
 	[] call A3A_fnc_FIAradio;
 	[] call A3A_fnc_economicsAI;
     [] call A3A_fnc_cleanConvoyMarker;
