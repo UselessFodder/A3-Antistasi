@@ -66,8 +66,17 @@ if (_varName in _specialVarLoads) then {
             _itemData set [2, _x#1];
             _itemData set [3, _x#2];
             _itemData set [4, _x#3];
+
+            private _categories = (_x#0) call A3A_fnc_equipmentClassToCategories;
+            private _itemName = (_x#0);
+            {
+            	private _categoryName = _x;
+            	//Consider making this pushBackUnique.
+            	(missionNamespace getVariable ("unlocked" + _categoryName)) pushBack _itemName;
+            	publicVariable ("unlocked" + _categoryName);
+            } forEach _categories;
         } forEach _varValue;
-    }
+    };
 	//Keeping these for older saves
 	if (_varName == 'prestigeNATO') then {[Occupants, _varValue, 120] call A3A_fnc_addAggression};
 	if (_varName == 'prestigeCSAT') then {[Invaders, _varValue, 120] call A3A_fnc_addAggression};
