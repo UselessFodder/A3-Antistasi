@@ -1,3 +1,6 @@
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
+
 params ["_object", "_configClass", "_item", "_class"];
 
 private _displayName = getText (configFile >> _configClass >> _item >> "displayName");
@@ -69,11 +72,21 @@ switch (_class) do
 };
 
 //Maybe get the score of the item in too
-private _itemValue = (missionNamespace getVariable [format ["%1_data", _item], [1]]) select 0;
+private _itemData = missionNamespace getVariable [format ["%1_data", _item], []];
+if(count _itemData == 0) exitWith
+{
+    Error_1("%1 does not have any data defined", _item);
+};
+
+private _itemValue = _itemData # 0;
+private _upgradedTimes = _itemData # 2;
 
 private _basePrice = ceil (5 * _priceModifier * _itemValue) * 5;
-private _supplyPrice = round (_basePrice * exp (0/20)) * 5; //Replace 7 by the amount of already done purchases
+private _supplyPrice = round (_basePrice * exp (_upgradedTimes/20)) * 5;
 
-[_object, [format ["Buy %1 for %2", _displayName, _basePrice], {([_this select 0] + (_this select 3)) call A3A_fnc_singleBuyAction;}, [_item, _class, _displayName, _basePrice]]] remoteExec ["addAction", [civilian, teamplayer], true];
-[_object, [format ["Buy %1 supply for %2", _displayName, _supplyPrice], {hint "Weapon bought!";}]] remoteExec ["addAction", [civilian, teamPlayer], true];
+_object setVariable ["basePrice", _basePrice, true];
+_object setVariable ["supplyPrice", _supplyPrice, true];
+
+[_object, [format ["Buy %1 for %2", _displayName, _basePrice], {([_this select 0] + (_this select 3)) call A3A_fnc_singleBuyAction;}, [_item, _class, _displayName]]] remoteExec ["addAction", [civilian, teamplayer], true];
+[_object, [format ["Buy %1 supply for %2", _displayName, _supplyPrice], {([_this select 0, _this select 2] + (_this select 3)) call A3A_fnc_supplyBuyAction;}, [_item, _class, _displayName]]] remoteExec ["addAction", [civilian, teamPlayer], true];
 //_object addAction [format ["Steal %1", _displayName], {hint "Weapon bought!";}];

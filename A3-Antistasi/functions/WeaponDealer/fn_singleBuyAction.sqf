@@ -38,10 +38,11 @@ FIX_LINE_NUMBERS()
 #define GRENADES            10
 #define HELMET              11
 
-params ["_object", "_item", "_class", "_name", "_price"];
+params ["_object", "_item", "_class", "_name"];
 
 if(!local player) exitWith {};
 
+private _price = _object getVariable ["basePrice", 0];
 if(player getVariable ["moneyX", 0] < _price) exitWith
 {
     ["Weapon Shop", "You dont have enough money to buy this"] call A3A_fnc_customHint;

@@ -696,6 +696,7 @@ class A3A
     {
         class addShopActions {};
         class calculateSellPrice {};
+        class increaseWeaponSupply {};
         class mergeWeaponArray {};
         class sellBoxContent {};
         class shopLoot {};
@@ -708,5 +709,6 @@ class A3A
         class sortVests {};
         class sortWeaponArray {};
         class spawnShop {};
+        class supplyBuyAction {};
     };
 };
