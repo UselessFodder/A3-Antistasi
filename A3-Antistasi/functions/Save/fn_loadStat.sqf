@@ -25,7 +25,7 @@ private _specialVarLoads = [
 	"garrison","tasks","smallCAmrk","membersX","vehInGarage","destroyedBuildings","idlebases",
 	"idleassets","chopForest","weather","killZones","jna_dataList","controlsSDK","mrkCSAT","nextTick",
 	"bombRuns","wurzelGarrison","aggressionOccupants", "aggressionInvaders",
-	"countCA", "attackCountdownInvaders", "testingTimerIsActive", "version", "HR_Garage"
+	"countCA", "attackCountdownInvaders", "testingTimerIsActive", "version", "HR_Garage", "supplyData"
 ];
 
 private _varName = _this select 0;
@@ -58,6 +58,16 @@ if (_varName in _specialVarLoads) then {
 	};
 	if (_varName == 'chopForest') then {chopForest = _varValue; publicVariable "chopForest"};
 	if (_varName == 'jna_dataList') then {jna_dataList = +_varValue};
+    if (_varName == 'supplyData') then
+    {
+        {
+            allSupplies pushBack (_x#0);
+            private _itemData = missionNamespace getVariable (format ["%1_data", _x#0]);
+            _itemData set [2, _x#1];
+            _itemData set [3, _x#2];
+            _itemData set [4, _x#3];
+        } forEach _varValue;
+    }
 	//Keeping these for older saves
 	if (_varName == 'prestigeNATO') then {[Occupants, _varValue, 120] call A3A_fnc_addAggression};
 	if (_varName == 'prestigeCSAT') then {[Invaders, _varValue, 120] call A3A_fnc_addAggression};

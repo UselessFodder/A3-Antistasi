@@ -37,6 +37,7 @@ if (isServer) then {
 	["bombRuns"] call A3A_fnc_getStatVariable;
 	waitUntil {!isNil "arsenalInit"};
 	["jna_dataList"] call A3A_fnc_getStatVariable;
+    ["supplyData"] call A3A_fnc_getStatVariable;
 	//===========================================================================
 	#include "\A3\Ui_f\hpp\defineResinclDesign.inc"
 

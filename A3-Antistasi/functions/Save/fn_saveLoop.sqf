@@ -144,6 +144,15 @@ _jna_dataList = [];
 _jna_dataList = _jna_dataList + jna_dataList;
 ["jna_dataList", _jna_dataList] call A3A_fnc_setStatVariable;
 
+private _supplyData = [];
+{
+    private _itemName = _x;
+    private _itemData = missionNamespace getVariable (format ["%1_data", _itemName]);
+
+    _supplyData pushBack [_itemName, _itemData#2, _itemData#3, _itemData#4];
+} forEach allSupplies;
+["supplyData", _supplyData] call A3A_fnc_setStatVariable;
+
 _prestigeOPFOR = [];
 _prestigeBLUFOR = [];
 
