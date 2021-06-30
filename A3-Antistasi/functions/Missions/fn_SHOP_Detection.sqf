@@ -60,6 +60,7 @@ petros globalChat (selectRandom _textPossibilites);
     waitUntil { sleep 2; allPlayers findIf { _x distance2d _garage < 15} != -1};
 
     [_taskName, "SUCCEEDED", true] call BIS_fnc_taskSetState;
+    server setVariable [format ["%1_isDetected", _marker], true];
 
     private _garageMarker = createMarker [format ["%1_storeMarker", _marker], getPos _garage];
     _garageMarker setMarkerShape "ICON";
