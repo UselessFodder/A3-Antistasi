@@ -50,7 +50,7 @@ if(_firstBuy) then
     	(missionNamespace getVariable ("unlocked" + _categoryName)) pushBack _item;
     	publicVariable ("unlocked" + _categoryName);
     } forEach _categories;
-    
+
     allSupplies pushBack _item;
 };
 

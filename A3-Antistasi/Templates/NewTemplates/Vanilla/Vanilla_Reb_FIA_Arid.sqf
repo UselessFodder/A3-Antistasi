@@ -73,15 +73,17 @@
     "H_Bandanna_cbr"
 ]] call _fnc_saveToTemplate;
 
-private _initialRebelEquipment = [
-"hgun_Pistol_heavy_02_F","hgun_P07_F",
-"SMG_01_F","SMG_02_F",
-"6Rnd_45ACP_Cylinder","16Rnd_9x21_Mag","30Rnd_45ACP_Mag_SMG_01","30Rnd_9x21_Mag_SMG_02","MiniGrenade","SmokeShell",
-"B_FieldPack_oli","B_FieldPack_blk","B_FieldPack_ocamo","B_FieldPack_oucamo","B_FieldPack_cbr","B_FieldPack_khk",
-"V_Chestrig_blk","V_Chestrig_rgr","V_Chestrig_khk","V_Chestrig_oli","V_BandollierB_blk","V_BandollierB_cbr","V_BandollierB_rgr",
-"V_BandollierB_khk","V_BandollierB_oli","V_Rangemaster_belt",
-"Binocular",
-"acc_flashlight","acc_flashlight_smg_01","acc_flashlight_pistol"];
+private _initialRebelEquipment =
+[
+    ["hgun_Pistol_heavy_02_F", 2, 15],["hgun_P07_F", 2, 15],
+    ["SMG_01_F", 2, 20],["SMG_02_F", 2, 20],
+    ["6Rnd_45ACP_Cylinder", 5, 30],["16Rnd_9x21_Mag", 5, 30],["30Rnd_45ACP_Mag_SMG_01", 10, 50],["30Rnd_9x21_Mag_SMG_02", 10, 50],["MiniGrenade", 2, 25],["SmokeShell", 2, 25],
+    ["B_FieldPack_oli", 1, 10],["B_FieldPack_blk", 1, 10],["B_FieldPack_ocamo", 1, 10],["B_FieldPack_oucamo", 1, 10],["B_FieldPack_cbr", 1, 10],["B_FieldPack_khk", 1, 10],
+    ["V_Chestrig_blk", 1, 10],["V_Chestrig_rgr", 1, 10],["V_Chestrig_khk", 1, 10],["V_Chestrig_oli", 1, 10],["V_BandollierB_blk", 1, 10],["V_BandollierB_cbr", 1, 10],["V_BandollierB_rgr", 1, 10],
+    ["V_BandollierB_khk", 1, 10],["V_BandollierB_oli", 1, 10],["V_Rangemaster_belt", 1, 10],
+    ["Binocular", 2, 10],
+    ["acc_flashlight", 1, 5],["acc_flashlight_smg_01", 1, 5],["acc_flashlight_pistol", 1, 5]
+];
 if (A3A_hasTFAR) then {_initialRebelEquipment append ["tf_microdagr","tf_anprc154"]};
 if (A3A_hasTFAR && startWithLongRangeRadio) then {_initialRebelEquipment pushBack "tf_anprc155_coyote"};
 if (A3A_hasTFARBeta) then {_initialRebelEquipment append ["TFAR_microdagr","TFAR_anprc154"]};

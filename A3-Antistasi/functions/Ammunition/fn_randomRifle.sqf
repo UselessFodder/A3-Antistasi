@@ -59,7 +59,7 @@ if(_isGarrison) then
     {
         _items pushBack _x;
         private _itemData = missionNamespace getVariable (format ["%1_data", _x]);
-        _chance pushBack (_items#3);
+        _chance pushBack (_itemData#3);
     } forEach _pool;
     _selectedRifle = _items selectRandomWeighted _chance;
 }
@@ -83,8 +83,11 @@ else
 
 if(_selectedRifle == "") exitWith {false;};
 
-private _index = _selectedRifle call jn_fnc_arsenal_itemType;
-[_index, _selectedRifle, 1] call jn_fnc_arsenal_removeItem;
+if(!_isGarrison) then
+{
+    private _index = _selectedRifle call jn_fnc_arsenal_itemType;
+    [_index, _selectedRifle, 1] call jn_fnc_arsenal_removeItem;
+};
 
 //Remove primary weapon if the unit has one
 if !(primaryWeapon _unit isEqualTo "") then
@@ -103,13 +106,13 @@ if !(primaryWeapon _unit isEqualTo "") then
 if (_selectedRifle in unlockedGrenadeLaunchers && {_selectedRifle in unlockedRifles} ) then
 {
     // lookup real underbarrel GL magazine, because not everything is 40mm
-    private _config = configFile >> "CfgWeapons" >> _rifleFinal;
+    private _config = configFile >> "CfgWeapons" >> _selectedRifle;
     private _glmuzzle = getArray (_config >> "muzzles") select 1;       // guaranteed by category
     private _glmag = getArray (_config >> _glmuzzle >> "magazines") select 0;
     _unit addMagazines [_glmag, 5];
 };
 
-[_unit, _rifleFinal, 5, 0] call BIS_fnc_addWeapon;
+[_unit, _selectedRifle, 5, 0] call BIS_fnc_addWeapon;
 
 if (count unlockedOptics > 0) then
 {

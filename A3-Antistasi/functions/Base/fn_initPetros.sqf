@@ -8,7 +8,7 @@ petros setSkill 1;
 petros setVariable ["respawning",false];
 petros allowDamage false;
 
-[petros,unlockedRifles] call A3A_fnc_randomRifle;
+[petros, unlockedRifles, true] call A3A_fnc_randomRifle;
 petros selectWeapon (primaryWeapon petros);
 [petros,true] call A3A_fnc_punishment_FF_addEH;
 petros addEventHandler

@@ -81,7 +81,10 @@ lootDevice append _lootDeviceBag + allBackpacksRadio;
 //      REBEL STARTING ITEMS     ///
 ////////////////////////////////////
 //KEEP AT BOTTOM!!!
-initialRebelEquipment append lootBasicItem;
+initialRebelEquipment append allMaps + allWatches + allCompasses + allFirstAidKits;
+{
+    initialRebelEquipment pushBack [_x, 1, 5];
+} forEach (allMedikits + allToolkits);
 initialRebelEquipment append (A3A_faction_reb getVariable "uniforms");
 initialRebelEquipment append (A3A_faction_civ getVariable "uniforms");
 initialRebelEquipment append allCosmeticHeadgear;

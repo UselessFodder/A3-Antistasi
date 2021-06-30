@@ -154,9 +154,29 @@ else {
 
 Info("Accepting players");
 if !(loadLastSave) then {
-	{
-		_x call A3A_fnc_unlockEquipment;
-	} foreach initialRebelEquipment;
+    {
+        if(_x isEqualType "") then
+        {
+            _x call A3A_fnc_unlockEquipment;
+        }
+        else
+        {
+            _x params ["_item", "_increase", "_amount"];
+            private _itemData = missionNamespace getVariable [format ["%1_data", _item], [1, -1, 0, 0, 0]];
+            _itemData set [3, _increase];
+            private _arsenalTab = _item call jn_fnc_arsenal_itemType;
+        	[_arsenalTab, _item, _amount] call jn_fnc_arsenal_addItem;
+
+            private _categories = _item call A3A_fnc_equipmentClassToCategories;
+            {
+            	private _categoryName = _x;
+            	(missionNamespace getVariable ("unlocked" + _categoryName)) pushBack _item;
+            	publicVariable ("unlocked" + _categoryName);
+            } forEach _categories;
+
+            allSupplies pushBack _item;
+        };
+    } foreach initialRebelEquipment;
     Info("Initial arsenal unlocks completed");
 };
 call A3A_fnc_createPetros;
