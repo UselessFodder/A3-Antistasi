@@ -62,7 +62,11 @@ if (_varName in _specialVarLoads) then {
     {
         {
             allSupplies pushBack (_x#0);
-            private _itemData = missionNamespace getVariable (format ["%1_data", _x#0]);
+            private _itemData = missionNamespace getVariable [format ["%1_data", _x#0], [1, -1]];
+            if(count _itemData == 2) then
+            {
+                Debug_1("%1 has no data set", _x#0);
+            };
             _itemData set [2, _x#1];
             _itemData set [3, _x#2];
             _itemData set [4, _x#3];

@@ -25,6 +25,9 @@ if (!_dontAddToArsenal) then {
 	if (!isNil "serverInitDone") then {ServerDebug_1("Item unlocked: %1", _className)};
 };
 
+private _itemData = missionNamespace getVariable [format ["%1_data", _className], [1,0,0,0,0]];
+_itemData set [3, -1];
+
 {
 	private _categoryName = _x;
 	//Consider making this pushBackUnique.

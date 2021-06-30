@@ -154,30 +154,43 @@ private _fnc_chooseSpawnItem =
 
     private _selection = shopArrayComplete selectRandomWeighted _arrayCopy;
     private _spawnItem = "";
+    private _itemData = [1, 0, 0, -1];
     private _abort = 5;
     if(_selection#2) then
     {
-        while {(_spawnItem == "") || (_spawnItem in _alreadySelected)} do
+        while {(_spawnItem == "") || {(_itemData#3 == -1) || (_spawnItem in _alreadySelected)}} do
         {
             _spawnItem = selectRandom (_selection#0);
+            _itemData = missionNamespace getVariable [format ["%1_data", _spawnItem], [1, 0, 0, -1]];
+            if(count _itemData <= 4) then
+            {
+                Debug_1("%1 has no data set", _spawnItem);
+            };
             _abort = _abort - 1;
             if(_abort < 0) exitWith
             {
                 Info("Selection aborted, run into endless loop!");
+                _spawnItem = "";
             };
         };
     }
     else
     {
-        while {(_spawnItem == "") || (_spawnItem in _alreadySelected)} do
+        while {(_spawnItem == "") || {((_itemData#3) == -1) || (_spawnItem in _alreadySelected)}} do
         {
             private _itemCount = (count (_selection#0)) - 1;
             private _spawnItemIndex = ([_supportPoint, 0.2] call _fnc_getRandomNumber) * _itemCount;
             _spawnItem = (_selection#0)#_spawnItemIndex;
+            _itemData = missionNamespace getVariable [format ["%1_data", _spawnItem], [1, 0, 0, -1]];
+            if(count _itemData <= 4) then
+            {
+                Debug_1("%1 has no data set", _spawnItem);
+            };
             _abort = _abort - 1;
             if(_abort < 0) exitWith
             {
                 Info("Selection aborted, run into endless loop!");
+                _spawnItem = "";
             };
         };
     };
@@ -334,9 +347,20 @@ else
     private _chooseArray = [3, 8, 1, 3, 6, 6, 5, 7, 1, 6, 4, 3];
     private _alreadySelected = [];
     {
-        private _itemData = [_chooseArray, _x#3, _citySupportRatio, _alreadySelected] call _fnc_chooseSpawnItem;
-        private _itemType = _itemData#0;
-        private _item = _itemData#1;
+        private _counter = 3;
+        private _item = "";
+        private _itemType = 0;
+        while {_item == ""} do
+        {
+            private _itemData = [_chooseArray, _x#3, _citySupportRatio, _alreadySelected] call _fnc_chooseSpawnItem;
+
+            _item = _itemData#1;
+            _itemType = _itemData#0;
+            _chooseArray = _itemData#2;
+
+            _counter = _counter - 1;
+            if(_counter <= 0) exitWith {};
+        };
         if(_item == "") then
         {
             Info_1("No selection done on slot %1, staying empty", _x);
@@ -344,7 +368,6 @@ else
         else
         {
             _alreadySelected pushBack _item;
-            _chooseArray = _itemData#2;
             Info_3("Selected %1 of type %2 for slot %3", _item, _itemType, _x);
             _allObjects pushBack ([_itemType, _item, _x#1, _x#2, _x#0] call _fnc_spawnItem);
         };

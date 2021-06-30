@@ -114,7 +114,7 @@ private _money = 0;
 {
     private _item = _x;
     private _itemIndex = missionNamespace getVariable [format ["%1_data", _item], []];
-    if(count _itemIndex == 0 || {_itemIndex # 2 > 0 || {_item in _unlocked}}) then
+    if(count _itemIndex == 0 || {_itemIndex # 3 != 0 || {_item in _unlocked}}) then
     {
         _rejected pushBack _item;
         Debug_2("Item %1 rejected, amount was %2", _item, _hashMap get _item);
