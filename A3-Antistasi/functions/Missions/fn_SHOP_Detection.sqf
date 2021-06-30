@@ -64,6 +64,7 @@ petros globalChat (selectRandom _textPossibilites);
     private _garageMarker = createMarker [format ["%1_storeMarker", _marker], getPos _garage];
     _garageMarker setMarkerShape "ICON";
     _garageMarker setMarkerType "loc_Rifle";
-    //_garageMarker setMarkerText "Weapon Shop";
-    //_garageMarker setMarkerAlpha 0.5;
+
+    sleep 60;
+    [_taskName, true] call BIS_fnc_deleteTask;
 };

@@ -382,6 +382,11 @@ if(!(_garage getVariable ["storeEventHandlerDone", false])) then
             if(format ["%1_SHOP", _marker] call BIS_fnc_taskExists) then
             {
                 [format ["%1_SHOP", _marker], "FAILED", true] call BIS_fnc_taskSetState;
+                (format ["%1_SHOP", _marker]) spawn
+                {
+                    sleep 60;
+                    [_this, true] call BIS_fnc_deleteTask;
+                };
             };
 
             Info_1("Store in %1 destroyed, setting 30 minutes countdown", _marker);
