@@ -37,6 +37,7 @@ if (_itemIsVanilla && {A3A_hasRHS}) exitWith {
 				default { true };
 			};
 		};
+        case "Magazine": { false };
 		default { true };
 	};
 };

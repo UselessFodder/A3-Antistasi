@@ -209,7 +209,14 @@ private _fnc_spawnItem =
         case (RIFLES);
         case (LAUNCHERS):
         {
-            _object = (format ["Weapon_%1", _item]) createVehicle _slotPos;
+            if(A3A_hasRHS) then
+            {
+                _object = (format ["Item_%1", _item]) createVehicle _slotPos;
+            }
+            else
+            {
+                _object = (format ["Weapon_%1", _item]) createVehicle _slotPos;
+            };
             _object setDamage 1;
             _object enableSimulationGlobal false;
             _object setPosWorld _slotPos;
@@ -279,7 +286,14 @@ private _fnc_spawnItem =
         };
         case (HELMET):
         {
-            _object = (format ["Headgear_%1", _item]) createVehicle _slotPos;
+            if(A3A_hasRHS) then
+            {
+                _object = (format ["Item_%1", _item]) createVehicle _slotPos;
+            }
+            else
+            {
+                _object = (format ["Headgear_%1", _item]) createVehicle _slotPos;
+            };
             _object setPosWorld _slotPos;//(_slotPos vectorAdd [0, 0, 0.05]);
             [_object, _orientation] call BIS_fnc_setObjectRotation;
             _object setDamage 1;

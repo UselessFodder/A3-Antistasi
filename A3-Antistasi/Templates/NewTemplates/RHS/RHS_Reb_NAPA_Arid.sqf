@@ -95,12 +95,12 @@
 ]] call _fnc_saveToTemplate;
 
 private _initialRebelEquipment = [
-"rhs_weap_type94_new","rhs_weap_tt33","rhs_weap_Izh18","rhs_weap_kar98k",
-"rhs_weap_rpg75",
-"rhs_mag_6x8mm_mhp","rhs_mag_762x25_8","rhsgref_1Rnd_00Buck","rhsgref_1Rnd_Slug","rhsgref_5Rnd_792x57_kar98k","rhs_grenade_mkii_mag","rhs_grenade_mki_mag","rhs_mag_rdg2_black","rhs_grenade_m15_mag",
-"B_FieldPack_blk","B_FieldPack_cbr","B_FieldPack_green_F","B_FieldPack_khk","B_FieldPack_oli",
-"rhsgref_chestrig","rhsgref_chicom","rhs_vydra_3m","rhs_vest_pistol_holster","rhs_vest_commander","rhs_6sh46","rhsgref_alice_webbing",
-"rhs_acc_2dpZenit","Binocular"];
+["rhs_weap_type94_new", 2, 15], ["rhs_weap_tt33", 2, 15],["rhs_weap_Izh18", 2, 20],["rhs_weap_kar98k", 2, 20],
+["rhs_weap_rpg75", 1, 25],
+["rhs_mag_6x8mm_mhp", 5, 30], ["rhs_mag_762x25_8", 5, 30], ["rhsgref_1Rnd_00Buck", 10, 50], ["rhsgref_1Rnd_Slug", 10, 50],["rhsgref_5Rnd_792x57_kar98k", 10, 50],["rhs_grenade_mkii_mag", 2, 25],["rhs_grenade_mki_mag", 2, 25],["rhs_mag_rdg2_black", 2, 25],["rhs_grenade_m15_mag", 2, 25],
+["B_FieldPack_blk", 1, 10],["B_FieldPack_cbr", 1, 10],["B_FieldPack_green_F", 1, 10],["B_FieldPack_khk", 1, 10],["B_FieldPack_oli", 1, 10],
+["rhsgref_chestrig", 1, 10],["rhsgref_chicom", 1, 10],["rhs_vydra_3m", 1, 10],["rhs_vest_pistol_holster", 1, 10],["rhs_vest_commander", 1, 10],["rhs_6sh46", 1, 10], ["rhsgref_alice_webbing", 1, 10],
+["rhs_acc_2dpZenit", 1, 5],["Binocular", 1, 10]];
 if (A3A_hasTFAR) then {_initialRebelEquipment append ["tf_microdagr","tf_anprc154"]};
 if (A3A_hasTFAR && startWithLongRangeRadio) then {_initialRebelEquipment pushBack "tf_anprc155_coyote"};
 if (A3A_hasTFARBeta) then {_initialRebelEquipment append ["TFAR_microdagr","TFAR_anprc154"]};
