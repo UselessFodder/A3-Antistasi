@@ -77,7 +77,7 @@ private _initialRebelEquipment =
 [
     ["hgun_Pistol_heavy_02_F", 2, 15],["hgun_P07_F", 2, 15],
     ["SMG_01_F", 2, 20],["SMG_02_F", 2, 20],
-    ["6Rnd_45ACP_Cylinder", 5, 30],["16Rnd_9x21_Mag", 5, 30],["30Rnd_45ACP_Mag_SMG_01", 10, 50],["30Rnd_9x21_Mag_SMG_02", 10, 50],["MiniGrenade", 2, 25],["SmokeShell", 2, 25],
+    ["6Rnd_45ACP_Cylinder", 30, 180],["16Rnd_9x21_Mag", 80, 480],["30Rnd_45ACP_Mag_SMG_01", 300, 1500],["30Rnd_9x21_Mag_SMG_02", 300, 1500],["MiniGrenade", 2, 25],["SmokeShell", 2, 25],
     ["B_FieldPack_oli", 1, 10],["B_FieldPack_blk", 1, 10],["B_FieldPack_ocamo", 1, 10],["B_FieldPack_oucamo", 1, 10],["B_FieldPack_cbr", 1, 10],["B_FieldPack_khk", 1, 10],
     ["V_Chestrig_blk", 1, 10],["V_Chestrig_rgr", 1, 10],["V_Chestrig_khk", 1, 10],["V_Chestrig_oli", 1, 10],["V_BandollierB_blk", 1, 10],["V_BandollierB_cbr", 1, 10],["V_BandollierB_rgr", 1, 10],
     ["V_BandollierB_khk", 1, 10],["V_BandollierB_oli", 1, 10],["V_Rangemaster_belt", 1, 10],

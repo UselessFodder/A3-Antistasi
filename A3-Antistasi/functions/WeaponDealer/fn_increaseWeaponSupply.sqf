@@ -31,7 +31,17 @@ private _increase = [_itemData#2] call _fnc_improvementRamp;
 private _firstBuy = (_itemData#2 == 0);
 
 _itemData set [2, _itemData#2 + 1];
-_itemData set [3, _itemData#3 + _increase];
+//Check if magazine
+if(_itemData#1 == 4) then
+{
+    private _bulletCount = getNumber (configFile >> "CfgMagazines" >> _item >> "count");
+    _itemData set [3, _itemData#3 + round (_increase * _bulletCount)];
+}
+else
+{
+    _itemData set [3, _itemData#3 + _increase];
+};
+
 
 private _basePrice = _object getVariable ["basePrice", 0];
 private _supplyPrice = round (_basePrice * exp ((_itemData#2)/20)) * 5;

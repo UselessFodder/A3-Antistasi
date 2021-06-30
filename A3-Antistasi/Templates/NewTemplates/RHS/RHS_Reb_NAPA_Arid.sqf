@@ -97,7 +97,7 @@
 private _initialRebelEquipment = [
 ["rhs_weap_type94_new", 2, 15], ["rhs_weap_tt33", 2, 15],["rhs_weap_Izh18", 2, 20],["rhs_weap_kar98k", 2, 20],
 ["rhs_weap_rpg75", 1, 25],
-["rhs_mag_6x8mm_mhp", 5, 30], ["rhs_mag_762x25_8", 5, 30], ["rhsgref_1Rnd_00Buck", 10, 50], ["rhsgref_1Rnd_Slug", 10, 50],["rhsgref_5Rnd_792x57_kar98k", 10, 50],["rhs_grenade_mkii_mag", 2, 25],["rhs_grenade_mki_mag", 2, 25],["rhs_mag_rdg2_black", 2, 25],["rhs_grenade_m15_mag", 2, 25],
+["rhs_mag_6x8mm_mhp", 30, 180], ["rhs_mag_762x25_8", 40, 240], ["rhsgref_1Rnd_00Buck", 10, 50], ["rhsgref_1Rnd_Slug", 10, 50],["rhsgref_5Rnd_792x57_kar98k", 50, 250],["rhs_grenade_mkii_mag", 2, 25],["rhs_grenade_mki_mag", 2, 25],["rhs_mag_rdg2_black", 2, 25],["rhs_grenade_m15_mag", 2, 25],
 ["B_FieldPack_blk", 1, 10],["B_FieldPack_cbr", 1, 10],["B_FieldPack_green_F", 1, 10],["B_FieldPack_khk", 1, 10],["B_FieldPack_oli", 1, 10],
 ["rhsgref_chestrig", 1, 10],["rhsgref_chicom", 1, 10],["rhs_vydra_3m", 1, 10],["rhs_vest_pistol_holster", 1, 10],["rhs_vest_commander", 1, 10],["rhs_6sh46", 1, 10], ["rhsgref_alice_webbing", 1, 10],
 ["rhs_acc_2dpZenit", 1, 5],["Binocular", 1, 10]];
