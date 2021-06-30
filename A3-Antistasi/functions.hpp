@@ -460,6 +460,7 @@ class A3A
         class launcherInfo {};
         class loot {};
         class randomRifle {};
+        class rifleAvailable {};
         class transfer {};
         class unlockEquipment {};
         class vehicleSort {};
