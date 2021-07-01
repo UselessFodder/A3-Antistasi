@@ -1,5 +1,7 @@
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
+
+
 if (!isServer) exitWith {};
 private ["_subObject","_ammunition","_originX","_destinationX"];
 _originX = _this select 0;
@@ -15,6 +17,8 @@ if (isNil {	// Run in unschedule scope.
 	};
 }) exitWith {};  // Silent exit, likely due to spamming
 
+
+//THAT ENTIRE FILE COUNT NEED A REWRITE, HAVE A LOOK AT A3A_fnc_sellBoxContent FOR HOW TO IMPROVE THAT
 
 _ammunition= [];
 _items = [];
@@ -73,12 +77,13 @@ if (!isNil "_weaponsItemsCargo") then
 _weaponsFinal = [];
 _weaponsFinalCount = [];
 {
-_weaponX = _x;
-if ((not(_weaponX in _weaponsFinal)) and (not(_weaponX in unlockedWeapons))) then
-	{
-	_weaponsFinal pushBack _weaponX;
-	_weaponsFinalCount pushBack ({_x == _weaponX} count _weaponsX);
-	};
+    private _weapon = _x;
+    private _itemData = missionNamespace getVariable [format ["%1_data", _weapon], [1, 0, 0, -1]];
+    if ((!(_weapon in _weaponsFinal)) && (_itemData#3 != -1)) then
+    {
+        _weaponsFinal pushBack _weapon;
+        _weaponsFinalCount pushBack ({_x == _weapon} count _weaponsX);
+    };
 } forEach _weaponsX;
 
 if (count _weaponsFinal > 0) then
@@ -92,20 +97,21 @@ if (count _weaponsFinal > 0) then
 _ammunitionFinal = [];
 _ammunitionFinalCount = [];
 if (isNil "_ammunition") then
-	{
-        Error_4("Ammunition transmission error. I had this: %1 and these containers: %2, the originX was a %3 and the objectX is defined as: %4", magazineCargo _originX, everyContainer _originX,typeOf _originX,_originX);
-	}
+{
+    Error_4("Ammunition transmission error. I had this: %1 and these containers: %2, the originX was a %3 and the objectX is defined as: %4", magazineCargo _originX, everyContainer _originX,typeOf _originX,_originX);
+}
 else
-	{
-	{
-	_weaponX = _x;
-	if ((not(_weaponX in _ammunitionFinal)) and (not(_weaponX in unlockedMagazines))) then
-		{
-		_ammunitionFinal pushBack _weaponX;
-		_ammunitionFinalCount pushBack ({_x == _weaponX} count _ammunition);
-		};
-	} forEach  _ammunition;
-	};
+{
+    {
+        private _ammo = _x;
+        private _itemData = missionNamespace getVariable [format ["%1_data", _ammo], [1, 0, 0, -1]];
+        if ((!(_ammo in _ammunitionFinal)) && (_itemData#3 != -1)) then
+        {
+            _ammunitionFinal pushBack _ammo;
+            _ammunitionFinalCount pushBack ({_x == _ammo} count _ammunition);
+        };
+    } forEach  _ammunition;
+};
 
 
 if (count _ammunitionFinal > 0) then
@@ -119,12 +125,13 @@ if (count _ammunitionFinal > 0) then
 _itemsFinal = [];
 _itemsFinalCount = [];
 {
-_weaponX = _x;
-if ((not(_weaponX in _itemsFinal)) and (not(_weaponX in unlockedItems))) then
-	{
-	_itemsFinal pushBack _weaponX;
-	_itemsFinalCount pushBack ({_x == _weaponX} count _items);
-	};
+    private _item = _x;
+    private _itemData = missionNamespace getVariable [format ["%1_data", _item], [1, 0, 0, -1]];
+    if ((_item in _itemsFinal) && (_itemData#3 != -1)) then
+    {
+        _itemsFinal pushBack _item;
+        _itemsFinalCount pushBack ({_x == _item} count _items);
+    };
 } forEach _items;
 
 if (count _itemsFinal > 0) then
@@ -138,12 +145,13 @@ if (count _itemsFinal > 0) then
 _backpcksFinal = [];
 _backpcksFinalCount = [];
 {
-_weaponX = _x;
-if ((not(_weaponX in _backpcksFinal)) and (not(_weaponX in unlockedBackpacks))) then
-	{
-	_backpcksFinal pushBack _weaponX;
-	_backpcksFinalCount pushBack ({_x == _weaponX} count _backpcks);
-	};
+    private _backpack = _x;
+    private _itemData = missionNamespace getVariable [format ["%1_data", _backpack], [1, 0, 0, -1]];
+    if ((!(_backpack in _backpcksFinal)) && (_itemData#3 != -1)) then
+    {
+        _backpcksFinal pushBack _backpack;
+        _backpcksFinalCount pushBack ({_x == _backpack} count _backpcks);
+    };
 } forEach _backpcks;
 
 if (count _backpcksFinal > 0) then
