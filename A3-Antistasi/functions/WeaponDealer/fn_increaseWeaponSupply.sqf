@@ -40,6 +40,19 @@ if(_itemData#1 == 4) then
 else
 {
     _itemData set [3, _itemData#3 + _increase];
+    if(_itemData#1 < 3) then
+    {
+        //Unlock at least one ammo type for it too
+        private _magazine = (getArray (configFile >> "CfgWeapons" >> _item >> "magazines")) # 0;
+        private _ammoData = missionNamespace getVariable [format ["%1_data", _magazine], []];
+        if(_ammoData#3 <= 0) then
+        {
+            private _bulletCount = getNumber (configFile >> "CfgMagazines" >> _magazine >> "count");
+            _ammoData set [3, _bulletCount];
+            allSupplies pushBack _magazine;
+            unlockedMagazines pushBack _magazine;
+        }
+    };
 };
 
 
