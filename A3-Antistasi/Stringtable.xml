@@ -3680,24 +3680,36 @@
             <English>Vehicles will be rearmed when ungaraged</English>
         </Key>
         <Key ID="STR_HR_GRG_SourcePanel_toolTip_Ammo_Unavailable">
-            <Original>Vehicles won't be rearmed when ungaraged</Original>
-            <English>Vehicles won't be rearmed when ungaraged</English>
+            <Original>Vehicles won't be rearmed when ungaraged as the garage lacks a ammo source</Original>
+            <English>Vehicles won't be rearmed when ungaraged as the garage lacks a ammo source</English>
+        </Key>
+        <Key ID="STR_HR_GRG_SourcePanel_toolTip_Ammo_Disabled">
+            <Original>Rearm disabled by server</Original>
+            <English>Rearm disabled by server</English>
         </Key>
         <Key ID="STR_HR_GRG_SourcePanel_toolTip_Fuel_Available">
             <Original>Vehicles will be refueled when ungaraged</Original>
             <English>Vehicles will be refueled when ungaraged</English>
         </Key>
         <Key ID="STR_HR_GRG_SourcePanel_toolTip_Fuel_Unavailable">
-            <Original>Vehicles won't be refueled when ungaraged</Original>
-            <English>Vehicles won't be refueled when ungaraged</English>
+            <Original>Vehicles won't be refueled when ungaraged as the garage lacks a fuel source</Original>
+            <English>Vehicles won't be refueled when ungaraged as the garage lacks a fuel source</English>
+        </Key>
+        <Key ID="STR_HR_GRG_SourcePanel_toolTip_Fuel_Disabled">
+            <Original>Refuel disabled by server settings</Original>
+            <English>Refuel disabled by server settings</English>
         </Key>
         <Key ID="STR_HR_GRG_SourcePanel_toolTip_Repair_Available">
             <Original>Vehicles will be repaired when ungaraged</Original>
             <English>Vehicles will be repaired when ungaraged</English>
         </Key>
         <Key ID="STR_HR_GRG_SourcePanel_toolTip_Repair_Unavailable">
-            <Original>Vehicles won't be repaired when ungaraged</Original>
-            <English>Vehicles won't be repaired when ungaraged</English>
+            <Original>Vehicles won't be repaired when ungaraged as the garage lacks a repair source</Original>
+            <English>Vehicles won't be repaired when ungaraged as the garage lacks a repair source</English>
+        </Key>
+        <Key ID="STR_HR_GRG_SourcePanel_toolTip_Repair_Disabled">
+            <Original>Repair disabled by server settings</Original>
+            <English>Repair disabled by server settings</English>
         </Key>
         <Key ID="STR_HR_GRG_InfoPanel_isAmmoSource">
             <Original>Vehicle is an ammo source</Original>
