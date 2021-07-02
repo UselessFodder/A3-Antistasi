@@ -19,6 +19,8 @@ private _addWeaponAndMags = {
 	_unit addMagazines [_magazine, _magCount-1];
 };
 
+private _useArsenal = (_recruitType != 2);
+
 if (haveRadio) then {_unit linkItem selectrandom (unlockedRadios)};
 
 // Chance of picking armored rather than random vests and headgear, rising with unlocked gear counts
@@ -49,24 +51,24 @@ switch (true) do {
 				if (count _potentials > 0) then {_unit addPrimaryWeaponItem (_potentials select 0)};
 			};
 		} else {
-			[_unit,unlockedRifles] call A3A_fnc_randomRifle;
+			[_unit,unlockedRifles, _useArsenal] call A3A_fnc_randomRifle;
 		};
 	};
 	case (_unitClass in SDKMil): {
-		[_unit,unlockedRifles] call A3A_fnc_randomRifle;
+		[_unit,unlockedRifles, _useArsenal] call A3A_fnc_randomRifle;
 		// Adding AA launchers to garrison riflemen because explosives guys can't currently be purchased there
 		if (_recruitType == 2 && {count unlockedAA > 0}) then {
 			[_unit, selectRandom unlockedAA, 1] call _addWeaponAndMags;
 		};
 	};
 	case (_unitClass in SDKMG): {
-		[_unit,unlockedMachineGuns] call A3A_fnc_randomRifle;
+		[_unit,unlockedMachineGuns, _useArsenal] call A3A_fnc_randomRifle;
 	};
 	case (_unitClass in SDKGL): {
-		[_unit,unlockedGrenadeLaunchers] call A3A_fnc_randomRifle;
+		[_unit,unlockedGrenadeLaunchers, _useArsenal] call A3A_fnc_randomRifle;
 	};
 	case (_unitClass in SDKExp): {
-		[_unit,unlockedRifles] call A3A_fnc_randomRifle;
+		[_unit,unlockedRifles, _useArsenal] call A3A_fnc_randomRifle;
 		_unit enableAIFeature ["MINEDETECTION", true]; //This should prevent them from Stepping on the Mines as an "Expert" (It helps, they still step on them)
 		if (count unlockedAA > 0) then {
 			[_unit, selectRandom unlockedAA, 1] call _addWeaponAndMags;
@@ -74,10 +76,10 @@ switch (true) do {
 		// TODO: explosives. Not that they know what to do with them.
 	};
 	case (_unitClass in SDKEng): {
-		[_unit,unlockedRifles] call A3A_fnc_randomRifle;
+		[_unit,unlockedRifles, _useArsenal] call A3A_fnc_randomRifle;
 	};
 	case (_unitClass in SDKMedic): {
-		[_unit,unlockedSMGs] call A3A_fnc_randomRifle;
+		[_unit,unlockedSMGs, _useArsenal] call A3A_fnc_randomRifle;
 		// temporary hack
 		private _medItems = [];
 		{
@@ -91,7 +93,7 @@ switch (true) do {
 		} forEach _medItems;
 	};
 	case (_unitClass in SDKATman): {
-		[_unit,unlockedRifles] call A3A_fnc_randomRifle;
+		[_unit,unlockedRifles, _useArsenal] call A3A_fnc_randomRifle;
 		if !(unlockedAT isEqualTo []) then {
 			[_unit, selectRandom unlockedAT, 4] call _addWeaponAndMags;
 		} else {
@@ -102,15 +104,15 @@ switch (true) do {
 	};
 	// squad leaders and
 	case (_unitClass in squadLeaders): {
-		[_unit,unlockedRifles] call A3A_fnc_randomRifle;
+		[_unit,unlockedRifles, _useArsenal] call A3A_fnc_randomRifle;
 		if (_recruitType == 1) then {_unit linkItem selectrandom (unlockedRadios)};
 	};
  	case (_unitClass isEqualTo staticCrewTeamPlayer): {
-		[_unit,unlockedRifles] call A3A_fnc_randomRifle;
+		[_unit,unlockedRifles, _useArsenal] call A3A_fnc_randomRifle;
 		if (_recruitType == 1) then {_unit linkItem selectrandom (unlockedRadios)};
 	};
 	default {
-		[_unit,unlockedSMGs] call A3A_fnc_randomRifle;
+		[_unit,unlockedSMGs, _useArsenal] call A3A_fnc_randomRifle;
         Error_1("Unknown unit class: %1", _unitClass);
 	};
 };

@@ -28,7 +28,7 @@ params
 [
     ["_unit", objNull, [objNull]],
     ["_pool", [], [[]]],
-    ["_isGarrison", false, [false]]
+    ["_isGarrison", true, [true]]
 ];
 
 private _exit = false;
