@@ -20,7 +20,11 @@ private _addToArray =
 private _playerMultiplayer = ceil (sqrt (count allPlayers));
 {
     private _itemName = _x;
-    private _itemData = missionNamespace getVariable (format ["%1_data", _itemName]);
+    private _itemData = missionNamespace getVariable [format ["%1_data", _itemName], [1, -1, 0, 0, 0]];
+    if(_itemData#1 == -1) then
+    {
+        Debug_1("Item %1 has no data set!", _itemName);
+    };
     private _all = _itemData#4 + (_itemData#3 * _playerMultiplayer * 0.16);
     private _available = floor (_all);
     _itemData set [4, _all - _available];
